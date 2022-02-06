@@ -1,16 +1,10 @@
 function increment() {
     for (let i = 0; i < 5; i++) {
-        logMessage(i);
-        switch (i) {
-            case 0:
-                logMessage(VERT);
-                break;
-            case (i % 2) === 0:
-                logMessage(ROUGE);
-                break;
-            default:
-                logMessage(BLEU);
-                break;
-        }
+        if(i === 0)
+            logMessage(i+": "+VERT);
+        else if (i%2 === 0)
+            logMessage(i+": "+ROUGE);
+        else
+            logMessage(i+": "+BLEU);
     }
 }

@@ -28,3 +28,12 @@ function addError(message, parent) {
 
     parent.prepend(error);
 }
+
+function bindButtonArticle(button) {
+    button.onclick = function (event) {
+        event.preventDefault();
+        getDescription(button.parentNode.id);
+
+        return false;
+    }
+}

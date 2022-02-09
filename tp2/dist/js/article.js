@@ -43,3 +43,8 @@ function addArticle(title) {
         return false;
     }
 }
+
+function getDescription(article){
+    let articlehtml = document.querySelector("#"+article);
+    logMessageWithDate(articlehtml.querySelector("p").innerHTML);
+}

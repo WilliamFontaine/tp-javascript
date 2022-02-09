@@ -11,3 +11,7 @@ titles.forEach(element => logMessageWithDate(element.innerHTML));
 
 let button = document.querySelector('input[name="addNewsBtn"]');
 bindButton(button);
+
+let but = document.querySelectorAll("button");
+but.forEach(element => bindButtonArticle(element));
+

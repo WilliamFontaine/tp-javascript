@@ -12,7 +12,7 @@ logMessage(content_h3);
 let button = document.querySelector("input[name='addNewsBtn']");
 button.onclick = addArticle;
 
-logMessageDate('un message avec la date et l\'heure devant');
+logMessageDate(' un message avec la date et l\'heure devant');
 
 function addArticle(){
     let text_input = document.querySelector("input[name='titleToAdd']").value;

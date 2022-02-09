@@ -4,5 +4,5 @@ function logMessage(message){
 
 function logMessageDate(message){
     let today = new Date();
-    console.log(today.getDate()+'/'+today.getMonth()+'/'+today.getFullYear()+' '+today.getHours()+'h'+today.getMinutes()+'min : '+message);
+    console.log(today.toLocaleString() + message);
 }

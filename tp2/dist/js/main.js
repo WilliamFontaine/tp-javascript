@@ -15,3 +15,4 @@ bindButton(button);
 let but = document.querySelectorAll("button");
 but.forEach(element => bindButtonArticle(element));
 
+jsonToArticle(ALLNEWSJSON)

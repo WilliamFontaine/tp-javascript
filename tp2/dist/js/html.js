@@ -3,9 +3,8 @@ function bindButton(button) {
         event.preventDefault();
         let champ = document.querySelector('input[name="titleToAdd"]');
 
-        if (addArticle(champ.value))
+        if (new Article(7, champ.value, "desc article 7"))
             champ.value = '';
-
         return false;
     }
 }
@@ -32,8 +31,14 @@ function addError(message, parent) {
 function bindButtonArticle(button) {
     button.onclick = function (event) {
         event.preventDefault();
-        getDescription(button.parentNode.id);
+        Article.getDescription(button.parentNode.id);
 
         return false;
     }
+}
+
+function jsonToArticle(name) {
+    let articles = JSON.parse(name);
+    articles.forEach(element => new Article(element.id, element.title, element.desc));
+    bindButtonArticle(but);
 }

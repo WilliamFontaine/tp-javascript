@@ -2,9 +2,13 @@ function bindButton(button) {
     button.onclick = function (event) {
         event.preventDefault();
         let champ = document.querySelector('input[name="titleToAdd"]');
-
-        if (new Article(7, champ.value, "desc article 7"))
+        let champ2 = document.querySelector('input[name="descToAdd"]');
+        let articlesId = []
+        document.querySelectorAll("article").forEach(element => articlesId.push((element.id).match(/\d+/)[0]))
+        let max = Math.max.apply(null,articlesId)
+        if (new Article(max+1, champ.value, champ2.value))
             champ.value = '';
+            champ2.value = '';
         return false;
     }
 }

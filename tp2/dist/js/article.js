@@ -54,11 +54,17 @@ class Article {
     }
 
     assertRequiredField() {
+        if (this.title === '' && this.desc === '')
+            throw new ArticleError('Titre et Description vide');
+
         if (this.title === '')
-            throw 'Titre vide';
+            throw new ArticleError('Titre vide');
+
+        if (this.desc === '')
+            throw new ArticleError('Description vide');
 
         if (this.title.length < 3)
-            throw 'Titre trop court';
+            throw new ArticleError('Titre trop court');
     }
 
     assertArticleUnicity() {
@@ -66,7 +72,7 @@ class Article {
 
         for (let i = 0; i < h3s.length; i++) {
             if (h3s[i].innerHTML.toLowerCase().trim() === this.title.toLowerCase().trim()) {
-                throw 'Erreur article deja existant';
+                throw new ArticleError('Erreur article deja existant');
             }
         }
 
@@ -83,7 +89,8 @@ class Article {
             return true;
         } catch (e) {
             let form = document.querySelector('#addNewsForm');
-            addError(e, form);
+            logMessageWithDate(e);
+            addError(e.message, form);
 
             return false;
         }

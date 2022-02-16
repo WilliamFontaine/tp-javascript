@@ -13,12 +13,12 @@ let button = document.querySelector('input[name="addNewsBtn"]');
 bindButton(button);
 
 let buttons = document.querySelectorAll('article button');
-buttons.forEach(function(element) {
+buttons.forEach(function (element) {
     element.onclick = viewdetailClick;
 });
 
 let articles = JSON.parse(ALLNEWSJSON);
-articles.forEach(function(element) {
+articles.forEach(function (element) {
     console.log(element);
 
     try {
@@ -31,8 +31,8 @@ articles.forEach(function(element) {
         if (e instanceof RequiredPropertyError || e instanceof DuplicateArticleError) {
             addError(e.message, form);
         } else {
-            console.error(e);
             addError('Une erreur inconnue est survenue !', form);
+            console.error(e);
         }
     }
 });

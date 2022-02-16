@@ -50,9 +50,7 @@ class Article {
 
         for (let i = 0; i < h3s.length; i++) {
             if (h3s[i].innerHTML.toLowerCase().trim() === this.title.toLowerCase().trim()) {
-                addError('Erreur article deja existant', form);
-
-                return false;
+                throw new DuplicateArticleError();
             }
         }
 

@@ -12,17 +12,17 @@ if (h1.length > 1) {
 
 logMessageWithDate(h1);
 logMessageWithDate(h1.html());
-
 h1.html('TP3 JS');
-
 
 
 let titleNews = $('#titleNews');
 logMessageWithDate(titleNews.attr('.value'));
 logMessageWithDate(titleNews.val());
 
+
 let titles = $('.title');
 titles.each(function(){logMessageWithDate($(this).html())});
+
 
 let button = $('input[name="addNewsBtn"]');
 button.click(function () {
@@ -30,7 +30,7 @@ button.click(function () {
     let description = $('textarea[name="descriptionToAdd"]');
     
     try {
-        let article = new Article(0, title.val(), description.val());
+        let article = new Article(title.val(), description.val());
         if (article.insertArticleHtml()) {
             title.value = '';
             description.value = '';
@@ -51,34 +51,17 @@ button.click(function () {
 
 
 let buttons = $('article button');
-
 buttons.click(function() {
     console.log($(this).parent().children()[1].innerHTML);
 });
   
+
 let articles = jQuery.parseJSON(ALLNEWSJSON);
-
-for(let i = 0; i < articles.length; i++){
-    try{
-        let a = new Article(articles[i].id, articles[i].title, articles[i].description);
-    }
-    catch (e) {
-        clearErrors();
-
-        if (e instanceof RequiredPropertyError || e instanceof DuplicateArticleError) {
-            addError(e.message);
-        } else {
-            addError('Une erreur inconnue est survenue !');
-            console.error(e);
-        }
-    }
-}
-
 articles.forEach(function (element) {
     console.log(element);
 
     try {
-        let a = new Article(element.id, element.title, element.description);
+        let a = new Article(element.title, element.description);
         a.insertArticleHtml();
     } catch (e) {
         clearErrors();
@@ -91,3 +74,18 @@ articles.forEach(function (element) {
         }
     }
 });
+
+insertAll();
+
+$('#sectionForm').click(function(){
+    $('#news').hide();
+    $('#addNewsForm').show();
+});
+
+$('#sectionNews').click(function(){
+    $('#addNewsForm').hide();
+    $('#news').show();
+});
+
+$('#addNewsForm').hide();
+$('#news').show();

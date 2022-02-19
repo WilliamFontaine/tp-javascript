@@ -13,4 +13,3 @@ function addError(message) {
     let form =  $('#addNewsForm')
     form.prepend(error);
 }
-

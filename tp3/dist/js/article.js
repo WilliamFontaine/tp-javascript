@@ -30,14 +30,13 @@ class Article {
 
     createArticleHtml() {
         let newArticle = $('<article></article>');
-        let h3 = $('<h3></h3>').text(this.title);
+        let h3 = $('<h3></h3>').text(this.title).attr('class', 'title');
         let p = $('<p></p>').text(this.description)
         let button = $('<button></button>').text('View detail');
         let news  = $('#news');
 
         newArticle.id = Article.idPrefix + this.id;
-        h3.attr('class', 'title')
-        news.append(newArticle.append(h3).append(p).append(button).attr('id', 'article-'+this.id));
+        news.append(newArticle.append(h3).append(p).append(button).attr('id', newArticle.id));
 
         
         button.click(function() {

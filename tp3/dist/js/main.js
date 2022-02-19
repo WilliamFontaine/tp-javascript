@@ -1,23 +1,79 @@
-iterate();
+//iterate();
 
-let h1 = document.querySelector('h1');
-logMessageWithDate(h1.innerHTML);
+let h1 = $('h1');
+if (h1 === undefined || h1.length === 0) {
+    throw new Error('Nombre de H1 trouvés faux !');
+}
 
-let titleNews = document.querySelector('#titleNews');
-logMessageWithDate(titleNews.innerHTML);
+if (h1.length > 1) {
+    let lastH1 = $('h1:last');
+    lastH1.remove();
+}
 
-let titles = document.querySelectorAll('.title');
-titles.forEach(element => logMessageWithDate(element.innerHTML));
+logMessageWithDate(h1);
+logMessageWithDate(h1.html());
 
-let button = document.querySelector('input[name="addNewsBtn"]');
-bindButton(button);
+h1.html('TP3 JS');
 
-let buttons = document.querySelectorAll('article button');
-buttons.forEach(function (element) {
-    element.onclick = viewdetailClick;
+
+
+let titleNews = $('#titleNews');
+logMessageWithDate(titleNews.attr('.value'));
+logMessageWithDate(titleNews.val());
+
+let titles = $('.title');
+titles.each(function(){logMessageWithDate($(this).html())});
+
+let button = $('input[name="addNewsBtn"]');
+button.click(function () {
+    let title = $('input[name="titleToAdd"]');
+    let description = $('textarea[name="descriptionToAdd"]');
+    
+    try {
+        let article = new Article(0, title.val(), description.val());
+        if (article.insertArticleHtml()) {
+            title.value = '';
+            description.value = '';
+        }
+        clearErrors();
+    } catch (e) {
+        clearErrors();
+        if (e instanceof RequiredPropertyError || e instanceof DuplicateArticleError) {
+            addError(e.message);
+        } else {
+            addError('Une erreur inconnue est survenue !');
+            console.error(e);
+         }
+    }
+    return false;
 });
 
-let articles = JSON.parse(ALLNEWSJSON);
+
+
+let buttons = $('article button');
+
+buttons.click(function() {
+    console.log($(this).parent().children()[1].innerHTML);
+});
+  
+let articles = jQuery.parseJSON(ALLNEWSJSON);
+
+for(let i = 0; i < articles.length; i++){
+    try{
+        let a = new Article(articles[i].id, articles[i].title, articles[i].description);
+    }
+    catch (e) {
+        clearErrors();
+
+        if (e instanceof RequiredPropertyError || e instanceof DuplicateArticleError) {
+            addError(e.message);
+        } else {
+            addError('Une erreur inconnue est survenue !');
+            console.error(e);
+        }
+    }
+}
+
 articles.forEach(function (element) {
     console.log(element);
 
@@ -26,12 +82,11 @@ articles.forEach(function (element) {
         a.insertArticleHtml();
     } catch (e) {
         clearErrors();
-        let form = document.querySelector('#addNewsForm');
 
         if (e instanceof RequiredPropertyError || e instanceof DuplicateArticleError) {
-            addError(e.message, form);
+            addError(e.message);
         } else {
-            addError('Une erreur inconnue est survenue !', form);
+            addError('Une erreur inconnue est survenue !');
             console.error(e);
         }
     }

@@ -14,23 +14,20 @@ class Article {
     }
 
     createArticleHtml() {
-        let newArticle = document.createElement('article');
-        let h3 = document.createElement('h3');
-        let p = document.createElement('p');
-        let button = document.createElement('button');
-        let news = document.querySelector('#news');
+        let newArticle = $('<article></article>');
+        let h3 = $('<h3></h3>').text(this.title);
+        let p = $('<p></p>').text(this.description)
+        let button = $('<button></button>').text('View detail');
+        let news  = $('#news');
 
-        h3.innerHTML = this.title;
-        p.innerHTML = this.description;
-        button.innerHTML = 'View detail';
-        this.bindButtonViewdetail(button, viewdetailClick);
-        h3.classList.add('title');
         newArticle.id = Article.idPrefix + this.id;
+        h3.attr('class', 'title')
+        news.append(newArticle.append(h3).append(p).append(button).attr('id', 'article-'+this.id));
 
-        newArticle.append(h3);
-        newArticle.append(p);
-        newArticle.append(button);
-        news.append(newArticle);
+        
+        button.click(function() {
+            logMessageWithDate($(this).parent().children()[1].innerHTML);
+        });
     }
 
     insertArticleHtml() {
@@ -41,24 +38,18 @@ class Article {
         return true;
     }
 
-    bindButtonViewdetail(button, callback) {
-        button.onclick = callback;
-    }
-
     assertUnicity() {
-        let h3s = document.querySelectorAll('.title');
-
-        for (let i = 0; i < h3s.length; i++) {
-            if (h3s[i].innerHTML.toLowerCase().trim() === this.title.toLowerCase().trim()) {
-                throw new DuplicateArticleError();
+        let h3s = $('.title');
+        h3s.each(function(){
+            if($(this).html().toLowerCase().trim() === this.title.toLowerCase().trim()){
+               throw new DuplicateArticleError();
             }
-        }
-
+        });
         return true;
     }
 
     assertRequiredProperty() {
-        if (this.title === '')
+        if (this.title === '' || this.description === '')
             throw new RequiredPropertyError();
     }
 }

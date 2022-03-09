@@ -1,5 +1,3 @@
-import ArticleNews from '/view/components/ArticleNews.js';
-
 Vue.createApp({
     data() {
         return {
@@ -12,19 +10,13 @@ Vue.createApp({
     data() {
         return {
             articles: this.getArticles(),
-            message: null,
+            errorMessage: null,
             titleToAdd: TITLEPLACEHOLDER,
-            descriptionToAdd: null,
-            art: "article",
-            colorVar: null
+            descriptionToAdd: null
         }
     },
     computed: {
         getNbArticles(){
-            if (this.articles.length > 1)
-                this.art = "articles"
-            else
-                this.art = "article"
             return this.articles.length;
         }
     },
@@ -39,31 +31,37 @@ Vue.createApp({
             console.log(this.titleToAdd);
             console.log(this.descriptionToAdd);
 
-            this.message = null;
+            this.errorMessage = null;
 
             if (this.titleToAdd !== '' && this.titleToAdd !== TITLEPLACEHOLDER) {
                 this.articles.push({title: this.titleToAdd, description: this.descriptionToAdd});
                 this.titleToAdd = TITLEPLACEHOLDER;
                 this.descriptionToAdd = null;
-                this.colorVar = 'lightgreen'
-                this.message = 'Vous avez bien ajouté un article !';
 
-            } else {
-                this.colorVar = 'red';
-                this.message = 'Le titre et la description doivent être renseignés !';
-            }
+            } else
+                this.errorMessage = 'Le titre doit être renseigné !';
 
             event.preventDefault();
         },
-        suppArticle(article){
-            this.articles.splice(this.articles.indexOf(article),1)
-        },
     }
-}).mount('#global');
 
+    }).mount('#news');
 
-Vue.createApp({})
-    .component('ArticleNews', ArticleNews)
-    .mount('#news');
+Vue.createApp({
+    data() {
+        return {
+            counter: 1
+        }
+    },
+    methods: {
+        increment() {
+            this.counter++;
+        },
+        decrement() {
+            if (this.counter > 0)
+                this.counter--;
+        }
+    }
+}).mount('#click');
 
 

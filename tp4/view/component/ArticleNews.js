@@ -1,23 +1,15 @@
-import ArticleNews from '/view/components/ArticleNews.js';
-
-Vue.createApp({
+export default {
     data() {
         return {
-            title: 'TP4 JS - Code with William & Léopold :)'
         }
-    }
-}).mount('h1');
-
-Vue.createApp({
-    data() {
-        return {
-            articles: this.getArticles(),
-            message: null,
-            titleToAdd: TITLEPLACEHOLDER,
-            descriptionToAdd: null,
-            art: "article",
-            colorVar: null
-        }
+    },
+    props: {
+        articles: this.getArticles(),
+        message: null,
+        titleToAdd: TITLEPLACEHOLDER,
+        descriptionToAdd: null,
+        art: "article",
+        colorVar: null
     },
     computed: {
         getNbArticles(){
@@ -58,12 +50,11 @@ Vue.createApp({
         suppArticle(article){
             this.articles.splice(this.articles.indexOf(article),1)
         },
-    }
-}).mount('#global');
-
-
-Vue.createApp({})
-    .component('ArticleNews', ArticleNews)
-    .mount('#news');
-
-
+    },
+    template: `
+    <article class="article-news" v-for="article in articles">
+        <h3 class="title">{{ article.title }}</h3>
+        <button @click="viewDetailArticle(article)">View details</button>
+        <button @click="suppArticle(article)">Supprimer</button>
+    </article>`
+}

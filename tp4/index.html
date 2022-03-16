@@ -25,11 +25,11 @@
         <h2 id="titleNews" class="text-center">
             {{ getNbArticles }} {{ art }}
         </h2>
-        <article v-for="article in articles">
-            <h3 class="title">{{ article.title }}</h3>
-            <button @click="viewDetailArticle(article)">View details</button>
-            <button @click="suppArticle(article)">Supprimer</button>
-        </article>
+        <article-news 
+        v-for="(articles,index) in articles"
+        :index="index"
+        :articles="this.articles"
+        ></article-news>
     </section>
 
     <section id="formulaire">
@@ -52,7 +52,6 @@
 
 <script src="/dist/js/const.js"></script>
 <script src="/dist/js/log.js"></script>
-<script src="/dist/js/math.js"></script>
 <script src="/dist/js/html.js"></script>
 <script src="/dist/js/main.js" type="module"></script>
 

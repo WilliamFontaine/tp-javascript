@@ -32,9 +32,6 @@ Vue.createApp({
         getArticles() {
             return JSON.parse(ALLNEWSJSON);
         },
-        viewDetailArticle(article) {
-            console.log(article.desc);
-        },
         addArticle: function (event) {
             console.log(this.titleToAdd);
             console.log(this.descriptionToAdd);
@@ -55,15 +52,16 @@ Vue.createApp({
 
             event.preventDefault();
         },
-        suppArticle(article){
-            this.articles.splice(this.articles.indexOf(article),1)
+        suppArticle(){
+            console.log('test');
+        },
+        fctTest(){
+            console.log('te2222st');
         },
     }
 }).mount('#global');
 
 
-Vue.createApp({})
-    .component('ArticleNews', ArticleNews)
-    .mount('#news');
+Vue.createApp({}).component('ArticleNews', ArticleNews).mount('#news');
 
 

@@ -1,20 +1,18 @@
 export default {
     data() {
-        return {
-        }
+        return {}
     },
-    props:{
+    props: {
         id: String,
         title: String,
         desc: String,
-    },   
-    computed: {
     },
+    computed: {},
     methods: {
         viewDetailArticle() {
             console.log(this.desc);
         },
-        supp(){
+        supp() {
             this.$emit('remove');
         }
     },

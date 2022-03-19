@@ -1,11 +1,11 @@
 function bindButton(button) {
-    button.onclick = function(event) {
+    button.onclick = function (event) {
         event.preventDefault();
         let title = document.querySelector('input[name="titleToAdd"]');
         let description = document.querySelector('textarea[name="descriptionToAdd"]');
 
         let articleIds = [];
-        document.querySelectorAll('article').forEach(function(element) {
+        document.querySelectorAll('article').forEach(function (element) {
             articleIds.push(element.id.replace(Article.idPrefix, ''));
         });
         let newId = articleIds.sort()[articleIds.length - 1] + 1;

@@ -5,7 +5,7 @@ class Article {
 
 
     constructor(id, title, desc) {
-        this.id = "article-"+id;
+        this.id = "article-" + id;
         this.title = title;
         this.desc = desc;
         this.addArticle();
@@ -33,6 +33,11 @@ class Article {
 
     set desc(value) {
         this.desc = value;
+    }
+
+    static getDescription(id) {
+        let articlehtml = document.querySelector("#" + id);
+        logMessageWithDate(articlehtml.querySelector("p").innerHTML);
     }
 
     createArticleHtml() {
@@ -94,10 +99,5 @@ class Article {
 
             return false;
         }
-    }
-
-    static getDescription(id) {
-        let articlehtml = document.querySelector("#" + id);
-        logMessageWithDate(articlehtml.querySelector("p").innerHTML);
     }
 }

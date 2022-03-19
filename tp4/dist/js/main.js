@@ -20,7 +20,7 @@ Vue.createApp({
         }
     },
     computed: {
-        getNbArticles(){
+        getNbArticles() {
             if (this.articles.length > 1)
                 this.art = "articles"
             else
@@ -34,10 +34,6 @@ Vue.createApp({
         },
         addArticle: function (event) {
             event.preventDefault();
-
-            console.log(this.titleToAdd);
-            console.log(this.descriptionToAdd);
-
             this.message = null;
 
             if (this.titleToAdd !== '' && this.titleToAdd !== TITLEPLACEHOLDER) {
@@ -51,10 +47,7 @@ Vue.createApp({
                 this.colorVar = 'red';
                 this.message = 'Le titre et la description doivent être renseignés !';
             }
-        },
-        suppArticle(id){
-            console.log(id+"test");
-        },
+        }
     }
 }).component('ArticleNews', ArticleNews).mount('#global');
 

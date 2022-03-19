@@ -21,7 +21,7 @@
 <h1>{{ title }}</h1>
 
 <section id="news">
-    <h2 id="titleNews" class="text-center" v-if="getNbArticles">
+    <h2 class="text-center" id="titleNews" v-if="getNbArticles">
         {{ getNbArticles }} article(s)
     </h2>
     <article v-for="article in articles" v-if="getNbArticles">
@@ -32,10 +32,10 @@
     <form @submit="addArticle">
         <p style="color: red">{{ errorMessage }}</p>
         <label>Nom de la news* :</label><br/>
-        <input v-model="titleToAdd" name="titleToAdd" type="text"/><br/>
+        <input name="titleToAdd" type="text" v-model="titleToAdd"/><br/>
         <label>Description de la news* :</label><br/>
-        <textarea v-model="descriptionToAdd" name="descriptionToAdd"></textarea><br/>
-        <input type="submit" name="addNewsBtn"/>
+        <textarea name="descriptionToAdd" v-model="descriptionToAdd"></textarea><br/>
+        <input name="addNewsBtn" type="submit"/>
     </form>
 </section>
 

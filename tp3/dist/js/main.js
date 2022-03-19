@@ -21,14 +21,16 @@ logMessageWithDate(titleNews.val());
 
 
 let titles = $('.title');
-titles.each(function(){logMessageWithDate($(this).html())});
+titles.each(function () {
+    logMessageWithDate($(this).html())
+});
 
 
 let button = $('input[name="addNewsBtn"]');
 button.click(function () {
     let title = $('input[name="titleToAdd"]');
     let description = $('textarea[name="descriptionToAdd"]');
-    
+
     try {
         let article = new Article(title.val(), description.val());
         if (article.insertArticleHtml()) {
@@ -43,18 +45,17 @@ button.click(function () {
         } else {
             addError('Une erreur inconnue est survenue !');
             console.error(e);
-         }
+        }
     }
     return false;
 });
 
 
-
 let buttons = $('article button');
-buttons.click(function() {
+buttons.click(function () {
     console.log($(this).parent().children()[1].innerHTML);
 });
-  
+
 
 let articles = jQuery.parseJSON(ALLNEWSJSON);
 articles.forEach(function (element) {
@@ -77,12 +78,12 @@ articles.forEach(function (element) {
 
 insertAll();
 
-$('#sectionForm').click(function(){
+$('#sectionForm').click(function () {
     $('#news').hide();
     $('#addNewsForm').show();
 });
 
-$('#sectionNews').click(function(){
+$('#sectionNews').click(function () {
     $('#addNewsForm').hide();
     $('#news').show();
 });

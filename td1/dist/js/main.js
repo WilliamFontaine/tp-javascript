@@ -16,7 +16,7 @@ Vue.createApp({
         }
     },
     computed: {
-        getNbArticles(){
+        getNbArticles() {
             return this.articles.length;
         }
     },
@@ -45,7 +45,7 @@ Vue.createApp({
         },
     }
 
-    }).mount('#news');
+}).mount('#news');
 
 Vue.createApp({
     data() {

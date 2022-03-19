@@ -10,6 +10,6 @@ function clearErrors() {
 
 function addError(message) {
     let error = $('<p></p>').text(message).attr('class', 'error').attr('style', 'color: rgb(255, 0, 0);');
-    let form =  $('#addNewsForm')
+    let form = $('#addNewsForm')
     form.prepend(error);
 }

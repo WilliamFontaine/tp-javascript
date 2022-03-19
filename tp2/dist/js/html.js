@@ -5,10 +5,10 @@ function bindButton(button) {
         let champ2 = document.querySelector('input[name="descToAdd"]');
         let articlesId = []
         document.querySelectorAll("article").forEach(element => articlesId.push((element.id).match(/\d+/)[0]))
-        let max = Math.max.apply(null,articlesId)
-        if (new Article(max+1, champ.value, champ2.value))
+        let max = Math.max.apply(null, articlesId)
+        if (new Article(max + 1, champ.value, champ2.value))
             champ.value = '';
-            champ2.value = '';
+        champ2.value = '';
         return false;
     }
 }

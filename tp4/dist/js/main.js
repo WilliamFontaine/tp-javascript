@@ -26,13 +26,15 @@ Vue.createApp({
             else
                 this.art = "article"
             return this.articles.length;
-        }
+        },
     },
     methods: {
         getArticles() {
             return JSON.parse(ALLNEWSJSON);
         },
         addArticle: function (event) {
+            event.preventDefault();
+
             console.log(this.titleToAdd);
             console.log(this.descriptionToAdd);
 
@@ -49,19 +51,11 @@ Vue.createApp({
                 this.colorVar = 'red';
                 this.message = 'Le titre et la description doivent être renseignés !';
             }
-
-            event.preventDefault();
         },
-        suppArticle(){
-            console.log('test');
-        },
-        fctTest(){
-            console.log('te2222st');
+        suppArticle(id){
+            console.log(id+"test");
         },
     }
-}).mount('#global');
-
-
-Vue.createApp({}).component('ArticleNews', ArticleNews).mount('#news');
+}).component('ArticleNews', ArticleNews).mount('#global');
 
 

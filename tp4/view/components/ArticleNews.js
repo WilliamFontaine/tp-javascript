@@ -1,30 +1,27 @@
 export default {
     data() {
         return {
-            //article: this.getArticleByIndex()
         }
     },
     props:{
-        articles: Array,
-        index: String
+        id: String,
+        title: String,
+        desc: String,
     },   
     computed: {
     },
     methods: {
-        getArticles() {
-            return JSON.parse(ALLNEWSJSON);
-        },
-        getArticleByIndex(index){
-            return this.articles[index];
-        },
         viewDetailArticle() {
-            console.log(this.articles);
+            console.log(this.desc);
+        },
+        supp(){
+            this.$emit('remove');
         }
     },
     template: `
     <article class="article-news">
-        <h3 class="title">{{ index }}</h3>
-        <button @click="viewDetailArticle()">View details</button>
-        <button @click="$emit('test')">Supprimer</button>
+        <h3 class="title">{{ title }}</h3>
+        <button @click="viewDetailArticle">View details</button>
+        <button @click="supp">Supprimer</button>
     </article>`
 }
